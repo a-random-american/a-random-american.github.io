@@ -1,0 +1,318 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Random American</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="logo-link">
+        <img src="arandomamerican-logo.svg" alt="A Random American">
+    </a>
+    <nav class="site-nav">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="about.html">About</a>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="map-frame">
+            <object id="usa-map" data="USAShape.svg" type="image/svg+xml"></object>
+            <svg id="dot-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;" viewBox="0 0 900.000000 623.000000"></svg>
+        </div>
+
+        <div class="control-panel">
+            <p id="american-description">
+                Generate a Random American!
+            </p>
+            <div class="button-row">
+                <button id="generate-button">Start</button>
+                <button id="clear-button">Clear</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="quiet-divider"><span class="star"></span></div>
+
+    <section class="section-card">
+        <div class="section-label">
+            <div class="badge"><span class="star"></span></div>
+            <div class="ribbon">Age</div>
+        </div>
+        <div class="map-col">
+            <div class="map-frame">
+                <object id="age-usa-map" data="USAShape.svg" type="image/svg+xml"></object>
+                <svg id="age-dot-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;" viewBox="0 0 900.000000 623.000000"></svg>
+            </div>
+            <div class="legend-gradient">
+                <span>0 Years Old</span>
+                <span class="bar"></span>
+                <span>120 Years Old</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="quiet-divider"><span class="star"></span></div>
+
+    <section class="section-card">
+        <div class="section-label">
+            <div class="badge"><span class="star"></span></div>
+            <div class="ribbon">Race &amp; Ethnicity</div>
+        </div>
+        <div class="map-col">
+            <div class="map-frame">
+                <object id="race-usa-map" data="USAShape.svg" type="image/svg+xml"></object>
+                <svg id="race-dot-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;" viewBox="0 0 900.000000 623.000000"></svg>
+            </div>
+            <div class="legend">
+                <span class="swatch" style="--swatch-color: rgb(220,40,40);">White</span>
+                <span class="swatch" style="--swatch-color: orange;">Black</span>
+                <span class="swatch" style="--swatch-color: yellow;">Native American</span>
+                <span class="swatch" style="--swatch-color: green;">Asian</span>
+                <span class="swatch" style="--swatch-color: blue;">Pacific Islander</span>
+                <span class="swatch" style="--swatch-color: indigo;">Some Other Race</span>
+                <span class="swatch" style="--swatch-color: purple;">Multiracial</span>
+                <span class="swatch" style="--swatch-color: pink;">Hispanic</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="quiet-divider"><span class="star"></span></div>
+
+    <section class="section-card">
+        <div class="section-label">
+            <div class="badge"><span class="star"></span></div>
+            <div class="ribbon ribbon--blue">Gender</div>
+        </div>
+        <div class="map-col">
+            <div class="map-frame">
+                <object id="gender-usa-map" data="USAShape.svg" type="image/svg+xml"></object>
+                <svg id="gender-dot-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;" viewBox="0 0 900.000000 623.000000"></svg>
+            </div>
+            <div class="legend">
+                <span class="swatch" style="--swatch-color: rgb(61,121,184);">Male</span>
+                <span class="swatch" style="--swatch-color: rgb(202,65,180);">Female</span>
+                <span class="swatch" style="--swatch-color: rgb(39,168,44);">Nonbinary</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="quiet-divider"><span class="star"></span></div>
+
+    <section class="section-card">
+        <div class="section-label">
+            <div class="badge"><span class="star"></span></div>
+            <div class="ribbon">Politics</div>
+        </div>
+        <div class="map-col">
+            <div class="map-frame">
+                <object id="politics-usa-map" data="USAShape.svg" type="image/svg+xml"></object>
+                <svg id="politics-dot-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;" viewBox="0 0 900.000000 623.000000"></svg>
+            </div>
+            <div class="legend">
+                <span class="swatch" style="--swatch-color: rgb(49,109,230);">Democrat</span>
+                <span class="swatch" style="--swatch-color: rgb(221,50,50);">Republican</span>
+                <span class="swatch" style="--swatch-color: rgb(183,50,232);">Independent</span>
+                <span class="swatch" style="--swatch-color: gray;">Not Voted</span>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="stars-row">
+        <span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span>
+    </div>
+</footer>
+
+<script type="module" >import { generateRandomPerson } from "./get_person";
+
+const people = [];
+const dots = [];
+
+function getPersonDescription(person) {
+    let noun;
+    const pronoun = { Male: "He", Female: "She", Nonbinary: "They" }[person.gender];
+    const pronounPlural = { Male: "", Female: "", Nonbinary: "s" }[person.gender];
+
+    if (person.age >= 18) {
+        noun = { Male: "man", Female: "woman", Nonbinary: "enby" }[person.gender];
+    } else {
+        noun = { Male: "boy", Female: "girl", Nonbinary: "enby" }[person.gender];
+    }
+
+    let coreStatement;
+    if (person.race === "Some Other Race") {
+        coreStatement = `${person.firstName} is a <br>${person.age}-year old ${noun}</br>from ${person.location.state}.<br>${pronoun} check${pronounPlural} 'Some Other Race' on the census.`;
+    } else {
+        coreStatement = `${person.firstName} is a <br>${person.age}-year old <br>${person.race} ${noun}<br>from ${person.location.state}.`;
+    }
+
+    if (person.politicalAffiliation !== "Not Voted") {
+        const article = { Democrat: "a", Republican: "a", Independent: "an" }[person.politicalAffiliation];
+        const verb = { Male: "is", Female: "is", Nonbinary: "are" }[person.gender];
+        return coreStatement + `<br>${pronoun} ${verb} ${article} ${person.politicalAffiliation}.`;
+    }
+
+    return coreStatement;
+}
+
+const renderLayers = {
+    "dot-layer": () => "#444",
+    "gender-dot-layer": (p) => (
+        {
+            Male: "rgb(61,121,184)",
+            Female: "rgb(202,65,180)",
+            Nonbinary: "rgb(39,168,44)"
+        }[p.gender]
+    ),
+    "age-dot-layer": (p) => {
+        function interpolateRGB(color1, color2, factor = 0.5) {
+            const result = color1.map((channel, i) =>
+                Math.round(channel + factor * (color2[i] - channel))
+            );
+            return `rgb(${result.join(',')})`;
+        }
+
+        return interpolateRGB([252, 246, 188], [103, 45, 72], p.age/120);
+    },
+    "race-dot-layer": (p) => ({
+        White: "rgb(220,40,40)",
+        Black: "orange",
+        "Native American": "yellow",
+        Asian: "green",
+        "Pacific Islander": "blue",
+        "Some Other Race": "indigo",
+        Multiracial: "purple",
+        Hispanic: "pink"
+    }[p.race]),
+    "politics-dot-layer": (p) => ({
+        Democrat: "rgb(49,109,230)",
+        Republican: "rgb(221,50,50)",
+        Independent: "rgb(183,50,232)",
+        "Not Voted": "gray"
+    }[p.politicalAffiliation])
+};
+
+function addDot(person) {
+    dots.push({
+        x: person.location.x,
+        y: person.location.y,
+        targetX: person.location.x,
+        targetY: person.location.y,
+        vx: 0,
+        vy: 0,
+        person
+    });
+}
+function updateDots() {
+    const radius = 5;
+    const minDist = radius * 2;
+
+    for (let i = 0; i < dots.length; i++) {
+        const a = dots[i];
+
+        // pull to true location
+        const pull = 0.05;
+        a.vx += (a.targetX - a.x) * pull;
+        a.vy += (a.targetY - a.y) * pull;
+
+        // repel
+        for (let j = 0; j < dots.length; j++) {
+            if (i === j) continue;
+
+            const b = dots[j];
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist === 0) {
+                const angle = Math.random() * Math.PI * 2;
+                const force = 0.5;
+
+                a.vx += Math.cos(angle) * force;
+                a.vy += Math.sin(angle) * force;
+            }
+            if (dist > 0 && dist < minDist) {
+                const force = (minDist - dist) * 0.1;
+                a.vx += (dx / dist) * force;
+                a.vy += (dy / dist) * force;
+            }
+        }
+
+        // damping
+        a.vx *= 0.8;
+        a.vy *= 0.8;
+
+        a.x += a.vx;
+        a.y += a.vy;
+    }
+}
+
+
+function renderLayer(svgId, colorFn) {
+    const svg = document.getElementById(svgId);
+    if (!svg) return;
+
+    svg.innerHTML = "";
+
+    for (const dot of dots) {
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
+        circle.setAttribute("cx", dot.x);
+        circle.setAttribute("cy", dot.y);
+        circle.setAttribute("r", 5);
+        circle.setAttribute("fill", colorFn(dot.person));
+        circle.setAttribute("opacity", "0.85");
+
+        svg.appendChild(circle);
+    }
+}
+
+function animate() {
+    updateDots();
+
+    Object.entries(renderLayers).forEach(([id, colorFn]) => {
+        renderLayer(id, colorFn);
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+function generateAmerican() {
+    const person = generateRandomPerson();
+    people.push(person);
+
+    document.getElementById("american-description").innerHTML = getPersonDescription(person);
+
+    document.getElementById("generate-button").textContent = "Get Another!";
+
+    addDot(person);
+}
+
+document
+    .getElementById("generate-button")
+    .addEventListener("click", generateAmerican);
+
+document
+    .getElementById("clear-button")
+    .addEventListener("click", () => {
+        dots.length = 0;
+        people.length = 0;
+        document.getElementById("american-description").textContent =
+            "Generate a Random American";
+        document.getElementById("generate-button").textContent = "Start";
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+export const nb_names = [
+    "Alex",
+    "Jay",
+    "Sam",
+    "Charlie",
+    "Max",
+    "Ash",
+    "Rowan",
+    "Robin",
+    "Kit",
+    "Eli",
+    "Quinn",
+    "Finn",
+    "Bee",
+    "Elliot",
+    "Jamie",
+    "Jack",
+    "Aster",
+    "Blue",
+    "Crow",
+    "Lee"
+]

@@ -1,0 +1,68 @@
+
+export type State = "Alabama" | "Alaska" | "Arizona" | "Arkansas" | "California" | "Colorado" | "Connecticut" | "Delaware" | "District of Columbia" | "Florida" | "Georgia" | "Hawaii" | "Idaho" | "Illinois" | "Indiana" | "Iowa" | "Kansas" | "Kentucky" | "Louisiana" | "Maine" | "Maryland" | "Massachusetts" | "Michigan" | "Minnesota" | "Mississippi" | "Missouri" | "Montana" | "Nebraska" | "Nevada" | "New Hampshire" | "New Jersey" | "New Mexico" | "New York" | "North Carolina" | "North Dakota" | "Ohio" | "Oklahoma" | "Oregon" | "Pennsylvania" | "Rhode Island" | "South Carolina" | "South Dakota" | "Tennessee" | "Texas" | "Utah" | "Vermont" | "Virginia" | "Washington" | "West Virginia" | "Wisconsin" | "Wyoming" | "American Samoa" | "Guam" | "Northern Mariana Islands" | "Puerto Rico" | "U.S. Virgin Islands"
+export type Race = "White" | "Black" | "Native American" | "Asian" | "Pacific Islander" | "Some Other Race" | "Multiracial" | "Hispanic"
+export type Age = 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 110;
+export type Gender = "Male" | "Female" | "Nonbinary";
+export type Affiliation = "Democrat" | "Republican" | "Independent"
+
+
+
+export const statePopulations: Map<State, number> = new Map([
+    ["California", 39355309],
+    ["Texas", 31709821],
+    ["Florida", 23462518],
+    ["New York", 20002427],
+    ["Pennsylvania", 13059432],
+    ["Illinois", 12719141],
+    ["Ohio", 11900510],
+    ["Georgia", 11302748],
+    ["North Carolina", 11197968],
+    ["Michigan", 10127884],
+    ["New Jersey", 9548215],
+    ["Virginia", 8880107],
+    ["Washington", 8001020],
+    ["Arizona", 7623818],
+    ["Tennessee", 7315076],
+    ["Massachusetts", 7154084],
+    ["Indiana", 6973333],
+    ["Missouri", 6270541],
+    ["Maryland", 6265347],
+    ["Colorado", 6012561],
+    ["Wisconsin", 5972787],
+    ["Minnesota", 5830405],
+    ["South Carolina", 5570274],
+    ["Alabama", 5193088],
+    ["Louisiana", 4618189],
+    ["Kentucky", 4606864],
+    ["Oregon", 4273586],
+    ["Oklahoma", 4123288],
+    ["Connecticut", 3688496],
+    ["Utah", 3538904],
+    ["Nevada", 3282188],
+    ["Iowa", 3238387],
+    ["Puerto Rico", 3184835],
+    ["Arkansas", 3114791],
+    ["Kansas", 2977220],
+    ["Mississippi", 2954160],
+    ["New Mexico", 2125498],
+    ["Idaho", 2029733],
+    ["Nebraska", 2018006],
+    ["West Virginia", 1766147],
+    ["Hawaii", 1432820],
+    ["New Hampshire", 1415342],
+    ["Maine", 1414874],
+    ["Montana", 1144694],
+    ["Rhode Island", 1114521],
+    ["Delaware", 1059952],
+    ["South Dakota", 935094],
+    ["North Dakota", 799358],
+    ["Alaska", 737270],
+    ["District of Columbia", 693645],
+    ["Vermont", 644663],
+    ["Wyoming", 588753],
+    ["Guam", 153836],
+    ["U.S. Virgin Islands", 87146],
+    ["American Samoa", 49710],
+    ["Northern Mariana Islands", 47329],
+]);
+

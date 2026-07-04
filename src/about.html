@@ -1,0 +1,82 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About &mdash; A Random American</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="logo-link">
+        <img src="arandomamerican-logo.svg" alt="A Random American">
+    </a>
+    <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html" aria-current="page">About</a>
+    </nav>
+</header>
+
+<main>
+
+    <div class="page-heading">
+        <h1>About the Project</h1>
+    </div>
+
+    <article class="about-card">
+        <h2>What the heck is this?</h2>
+        <p>
+            A Random American generates demographically accurate Americans. The model covers home state, age, race/ethnicity, gender, and political affiliation. That sounds like it should be pretty simple, given that there's no shortage of statistics on all those categories individually. But putting them together is more difficult than you might think.
+        </p>
+        <p>
+            For example, about a third of the country is Republican, and about 10% live in California, but that doesn't mean 3.3% are California Republicans. The odds of being a Republican change once you decide that your random American is from California. Look up <a href="https://en.wikipedia.org/wiki/Marginal_distribution" target="_blank" rel="noopener">marginal distributions</a> if you want to explore more about this phenomenon, but the more categories you add, the more difficult it becomes to account for. You might have a good estimate of the age distribution of the US, but what about the age distribution of Hispanic Democratic women in Guam? (Including territories like Guam also made this much more difficult since data is more sparse and often not included alongside data for states). There are many ways of dealing with this problem that vary in laziness, but our model uses real data wherever it's available, making it about as accurate as possible.
+        </p>
+    </article>
+
+    <article class="about-card">
+        <h2>How people are generated</h2>
+
+        <p>
+            Generation begins by selecting a state according to its population,
+            using population data from the
+            <a href="https://www.census.gov/data/tables/2023/dec/2020-census-dhc.html" target="_blank" rel="noopener">2020 U.S. Census Demographic and Housing Characteristics File</a>.
+            Within each state, age, gender, and race or ethnicity are sampled from the
+            <a href="https://www.census.gov/programs-surveys/acs/microdata.html" target="_blank" rel="noopener">American Community Survey Public Use Microdata Sample (ACS PUMS)</a>,
+            which preserves the relationships between these characteristics rather than treating them independently.
+            <a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html">Similar census data</a> are used for Puerto Rico, Guam, American Samoa,
+            the Northern Mariana Islands, and the U.S. Virgin Islands, which are the territories we included for this project.
+        </p>
+
+        <p>
+            Political affiliation is assigned only to adults. This data isn't collected by the Census or PUMS, so instead our model combines national survey data from the
+            <a href="https://www.pewresearch.org/politics/fact-sheet/party-affiliation-fact-sheet-npors/" target="_blank" rel="noopener">Pew Research Center</a>
+            with state party registration statistics and Census demographics using a Bayesian model. This should avoid double-counting correlations already captured by state demographics while producing realistic differences between places and populations.
+        </p>
+
+        <p>
+            Note that we also show names and locations for our generated people. Disclaimer: only the demographic info (age, gender, race/ethnicity, state, politics) is really accurate; the rest is done on a best-effort basis to give the site more personality and a better feel. If I had to incorporate more variables I would tear my hair out.
+        </p>
+
+        <p>
+            First names are chosen by combining several independent datasets. The
+            <a href="https://www.ssa.gov/oact/babynames/limits.html" target="_blank" rel="noopener">Social Security Administration's baby names database</a>
+            provides the popularity of names by state, birth year, and sex, while
+            <a href="https://www.census.gov/topics/population/genealogy/data/2010_surnames.html" target="_blank" rel="noopener">U.S. Census name data</a>
+            provide estimates of how strongly names are associated with different racial and ethnic groups. However, the federal first-name data only account for men and women, so for nonbinary names we instead used
+            <a href="https://www.tumblr.com/cassolotl/717205595957166080/results-of-the-nonbinary-name-survey" target="_blank" rel="noopener">Cassolotl's informal survey of nonbinary first names</a>.
+            Again, including nonbinary people made the model much more difficult due to the lack of data, but it was a worthwhile challenge. These sources are combined to produce names that are plausible for a person's age, gender, race, and location.
+        </p>
+    </article>
+
+</main>
+
+<footer class="site-footer">
+    <div class="stars-row">
+        <span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span>
+    </div>
+</footer>
+
+</body>
+</html>
